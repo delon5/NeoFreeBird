@@ -27,9 +27,9 @@ Usage: $(basename "$0") [--sideloaded | --rootless | --trollstore | --rootfull]
 TL;DR: You need to select one flag to build NeoFreeBird.
 
 Flags (required):
-  --sideloaded   Compile NeoFreeBird as a .ipa so you can sideload it with AltStore, Sideloadly or similar. 
+  --sideloaded   Compile NeoFreeBird as a .ipa so you can sideload it with AltStore, Sideloadly or similar.
   --rootless     Compile NeoFreeBird as a .deb file that does not require a jailbreak.
-  --trollstore   Compile NeoFreeBird as a .tipa so you can install it using TrollStore. 
+  --trollstore   Compile NeoFreeBird as a .tipa so you can install it using TrollStore.
   --rootfull     Compile NeoFreeBird as a .deb file that requires a jailbreak.
 
 Options:
@@ -102,8 +102,7 @@ case "$MODE" in
       say "Building the IPA."
       if command -v cyan >/dev/null 2>&1; then
         cyan -i packages/com.atebits.Tweetie2.ipa -o packages/NeoFreeBird-sideloaded --ignore-encrypted \
-          -uwf .theos/obj/debug/keychainfix.dylib .theos/obj/debug/libbhFLEX.dylib \
-          .theos/obj/debug/zxPluginsInject.dylib \
+          -uwf .theos/obj/debug/zxPluginsInject.dylib .theos/obj/debug/libbhFLEX.dylib \
           .theos/obj/debug/BHTwitter.dylib layout/Library/Application\ Support/BHT/BHTwitter.bundle
       else
         say "Skipping cyan step because it is not installed."
