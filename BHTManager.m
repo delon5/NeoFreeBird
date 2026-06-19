@@ -239,7 +239,7 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_view_count"];
 }
 + (BOOL)hidePremiumOffer {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_premium_offer"];
+    return YES;
 }
 + (BOOL)hideTrendVideos {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_trend_videos"];
