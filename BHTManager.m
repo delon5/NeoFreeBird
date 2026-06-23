@@ -280,6 +280,9 @@
 + (BOOL)hideCustomTimelines {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_custom_timelines"];
 }
++ (BOOL)hideTrends {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_trends"];
+}
 
 + (BOOL)disableHighlights {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"disableHighlights"];

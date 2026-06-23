@@ -2456,6 +2456,70 @@ static void BHTHideHomeAddTabButton(id container) {
 }
 %end
 
+// MARK: - Hide all trending content on the Explore tab (keep only the search bar)
+static void BHT_hideExploreLabelViews(UIView *view) {
+    if (!view) return;
+    if ([view isKindOfClass:NSClassFromString(@"TFNScrollingHorizontalLabelView")]) {
+        view.hidden = YES;
+        return;
+    }
+    for (UIView *subview in view.subviews) {
+        BHT_hideExploreLabelViews(subview);
+    }
+}
+
+static BOOL BHT_guidePresentsSearch(UIViewController *guideVC) {
+    for (UIViewController *p = guideVC.presentedViewController; p; p = p.presentedViewController) {
+        if ([NSStringFromClass([p class]) containsString:@"Search"]) return YES;
+    }
+    for (UIViewController *c in guideVC.childViewControllers) {
+        if ([NSStringFromClass([c class]) containsString:@"Search"]) return YES;
+    }
+    return NO;
+}
+
+static BOOL BHT_guideIsInsideSearch(UIViewController *guideVC) {
+    for (UIViewController *a = guideVC.parentViewController; a; a = a.parentViewController) {
+        if ([NSStringFromClass([a class]) containsString:@"Search"]) return YES;
+    }
+    for (UIViewController *p = guideVC.presentingViewController; p; p = p.presentingViewController) {
+        if ([NSStringFromClass([p class]) containsString:@"Search"]) return YES;
+    }
+    return NO;
+}
+
+%hook T1GuideNavigationController
+- (void)viewDidLayoutSubviews {
+    %orig;
+    if (![BHTManager hideTrends]) return;
+    @try {
+        UIViewController *guideVC = (UIViewController *)self;
+        if (BHT_guideIsInsideSearch(guideVC)) return;
+        BOOL searchOpen = BHT_guidePresentsSearch(guideVC);
+
+        if ([guideVC respondsToSelector:@selector(viewControllers)]) {
+            NSArray *pages = [(id)guideVC viewControllers];
+            for (UIViewController *page in pages) {
+                if (![page isKindOfClass:[UIViewController class]] || !page.isViewLoaded) continue;
+                // Never touch the search experience if it appears as a panel.
+                if ([NSStringFromClass([page class]) containsString:@"Search"]) continue;
+                page.view.hidden = YES;
+                UIView *container = page.view.superview;
+                if (container && container != guideVC.view) {
+                    container.hidden = !searchOpen;
+                }
+            }
+        }
+
+        if (!searchOpen) {
+            BHT_hideExploreLabelViews(guideVC.view);
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"[BHTwitter] hideTrends exception: %@", exception);
+    }
+}
+%end
+
 %hook T1ImmersiveExploreCardView
 - (void)handleDoubleTap:(id)arg1 {
     if ([BHTManager LikeConfirm]) {

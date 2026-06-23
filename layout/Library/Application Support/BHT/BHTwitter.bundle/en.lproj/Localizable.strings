@@ -266,6 +266,9 @@
 "HIDE_CUSTOM_TIMELINES_OPTION_TITLE" = "Hide custom timelines";
 "HIDE_CUSTOM_TIMELINES_OPTION_DETAIL_TITLE" = "Remove the Add button from the home timeline tabs. Required relaunching.";
 
+"HIDE_TRENDS_OPTION_TITLE" = "Hide trending content";
+"HIDE_TRENDS_OPTION_DETAIL_TITLE" = "Show only the search bar on the Explore tab, hiding all trends, news and the page tabs.";
+
 "CLASSIC_TAB_BAR_SETTINGS_TITLE" = "Classic tab bar";
 "CLASSIC_TAB_BAR_SETTINGS_DETAIL" = "Applies your accent color to the currently selected tab item.";
 

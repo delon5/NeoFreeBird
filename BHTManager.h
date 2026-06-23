@@ -62,6 +62,7 @@
 + (BOOL)disableMediaTab;
 + (BOOL)disableArticles;
 + (BOOL)hideCustomTimelines;
++ (BOOL)hideTrends;
 + (BOOL)disableHighlights;
 
 + (BOOL)hideGrokAnalyze;
