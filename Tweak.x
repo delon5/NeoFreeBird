@@ -1378,7 +1378,7 @@ static void BHTApplyCopyButtonStyle(UIButton *copyButton, T1ProfileHeaderView *h
 }
 %end
 
-// MARK: Save tweet as an image
+// MARK: Open reply in webview
 
 static id BHT_currentAccountFromController(UIViewController *controller) {
     NSMutableSet<UIViewController *> *visitedControllers = [NSMutableSet set];
@@ -1564,6 +1564,8 @@ static T1StatusCell *BHT_tweetViewFromInlineActionsView(TTAStatusInlineActionsVi
     }
 }
 %end
+
+// MARK: Save tweet as an image
 
 %hook TTAStatusInlineShareButton
 - (void)didLongPressActionButton:(UILongPressGestureRecognizer *)gestureRecognizer {
@@ -4649,7 +4651,7 @@ static char kManualRefreshInProgressKey;
 
 %end
 
-// Force ephemeral sessions so XChat's web-based auth flow doesn't share cookies with
+// Force ephemeral sessions so web flows doesn't share cookies with
 // a persistent browser session that might expose attestation state.
 %hook ASWebAuthenticationSession
 
