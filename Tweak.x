@@ -3819,6 +3819,58 @@ static BOOL BHColorTwitterIconEnabled(void) {
 
 %end
 
+%hook _TtC24TwitterTweetAnatomySwift24GrokAnalyzeButtonManager
+
++ (BOOL)shouldShowGrokAnalyzeButtonForAuthorViewWithViewModel:(id)viewModel account:(id)account options:(unsigned long long)options displayType:(long long)displayType {
+    if ([BHTManager hideGrokAnalyze]) return NO;
+    return %orig;
+}
+
+%end
+
+@interface T1ResizableHeaderView : UIView
+- (UIView *)grokXaiLogoButton;
+@end
+
+%hook T1ResizableHeaderView
+
+- (void)layoutSubviews {
+    %orig;
+    if (![BHTManager hideGrokAnalyze]) return;
+    UIView *grok = [self grokXaiLogoButton];
+    if (grok) {
+        grok.hidden = YES;
+        grok.userInteractionEnabled = NO;
+    }
+}
+
+%end
+
+static NSArray *BHTRemoveGrokBarButtonItems(NSArray *items) {
+    if (!items.count || ![BHTManager hideGrokAnalyze]) return items;
+    NSMutableArray *filtered = nil;
+    for (UIBarButtonItem *item in items) {
+        NSString *label = [item.accessibilityLabel lowercaseString];
+        if ([label rangeOfString:@"grok"].location != NSNotFound) {
+            if (!filtered) filtered = [items mutableCopy];
+            [filtered removeObject:item];
+        }
+    }
+    return filtered ?: items;
+}
+
+%hook UINavigationItem
+
+- (void)setRightBarButtonItems:(NSArray<UIBarButtonItem *> *)items {
+    %orig(BHTRemoveGrokBarButtonItems(items));
+}
+
+- (void)setRightBarButtonItems:(NSArray<UIBarButtonItem *> *)items animated:(BOOL)animated {
+    %orig(BHTRemoveGrokBarButtonItems(items), animated);
+}
+
+%end
+
 // MARK: - Hide Grok Analyze & Subscribe Buttons on Detail View
 
 // Minimal interface for TFNButton, used by UIControl hook and FollowButton logic
