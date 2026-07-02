@@ -1894,17 +1894,6 @@ static NSNumber *BHTFeatureSwitchOverrideValueForKey(NSString *key) {
         }
     }
 
-    // Restore classic OCF login (bypass broken Jetfuel/attestation onboarding)
-    if ([key isEqualToString:@"onboarding_new_fallback"]) {
-        return @YES;
-    }
-
-    if ([key isEqualToString:@"onboarding_new_keychain_login_enabled"] ||
-        [key isEqualToString:@"onboarding_new_login_with_recent_account_enabled"] ||
-        [key isEqualToString:@"onboarding_new_add_existing_account_enabled"]) {
-        return @NO;
-    }
-
     // Conversation / tweet detail
     if ([key isEqualToString:@"conversational_replies_ios_minimal_detail_enabled"]) {
         return @(![BHTManager OldStyle]);
@@ -2137,7 +2126,7 @@ static NSNumber *BHTFeatureSwitchOverrideValueForKey(NSString *key) {
 %end
 
 %hook T1HostViewController
-- (void)makeOnboardingViewControllerWithOCFFallback:(id)fallback completion:(void (^)(id))completion {
+- (void)makeOnboardingViewControllerWithCompletion:(void (^)(id))completion {
     if (completion == nil) {
         %orig;
         return;

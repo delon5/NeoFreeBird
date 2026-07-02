@@ -252,7 +252,7 @@ static NSString *const kJSInstJS =
     [self.view addSubview:stack];
 
     [NSLayoutConstraint activateConstraints:@[
-        [stack.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+        [stack.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:24],
         [stack.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:32],
         [stack.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-32],
         [self.userField.heightAnchor constraintEqualToConstant:44],
