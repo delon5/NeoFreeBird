@@ -9,7 +9,6 @@
 /*Alerts and popups*/
 "RESTART_REQUIRED_ALERT_TITLE" = "Omstart krävs";
 "RESTART_REQUIRED_ALERT_MESSAGE" = "Du måste starta om Twitter för att ändringen ska träda i kraft.";
-"MODERN_LAYOUT_RESTART_MESSAGE" = "För att byta mellan modern och klassisk layout måste du starta om Twitter.";
 
 "CONFIRM_ALERT_MESSAGE" = "Säker på att du menade det?";
 "YES_BUTTON_TITLE" = "Ja";

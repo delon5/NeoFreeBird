@@ -10,7 +10,6 @@
 "RESTART_REQUIRED_ALERT_TITLE" = "Se requiere reinicio";
 "RESTART_REQUIRED_ALERT_MESSAGE" = "Debes reiniciar Twitter para que este cambio surta efecto.";
 "RESTART_NOW_BUTTON_TITLE" = "Reiniciar ahora";
-"MODERN_LAYOUT_RESTART_MESSAGE" = "Para cambiar entre el diseño moderno y clásico, debes reiniciar Twitter.";
 
 "CONFIRM_ALERT_MESSAGE" = "¿Estás seguro de que querías hacer eso?";
 "YES_BUTTON_TITLE" = "Sí";

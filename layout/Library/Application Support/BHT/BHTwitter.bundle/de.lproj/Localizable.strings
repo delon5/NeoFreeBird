@@ -10,7 +10,6 @@
 "RESTART_REQUIRED_ALERT_TITLE" = "Neustart erforderlich";
 "RESTART_REQUIRED_ALERT_MESSAGE" = "Twitter muss neu gestartet werden, damit diese Änderung wirksam wird.";
 "RESTART_NOW_BUTTON_TITLE" = "Jetzt neu starten";
-"MODERN_LAYOUT_RESTART_MESSAGE" = "Um zwischen modernem und klassischem Layout zu wechseln, muss Twitter neu gestartet werden.";
 
 "CONFIRM_ALERT_MESSAGE" = "Bist du dir sicher, dass du das tun wolltest?";
 "YES_BUTTON_TITLE" = "Ja";

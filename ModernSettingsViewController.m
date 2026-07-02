@@ -1586,7 +1586,9 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
 
 - (void)buildSettingsList {
     self.settings = @[
-        @{ @"key": @"hide_trends", @"titleKey": @"HIDE_TRENDS_OPTION_TITLE", @"subtitleKey": @"HIDE_TRENDS_OPTION_DETAIL_TITLE", @"default": @NO, @"type": @"toggle" }
+        @{ @"key": @"no_his", @"titleKey": @"NO_HISTORY_OPTION_TITLE", @"subtitleKey": @"NO_HISTORY_OPTION_DETAIL_TITLE", @"default": @NO, @"type": @"toggle" },
+        @{ @"key": @"hide_trends", @"titleKey": @"HIDE_TRENDS_OPTION_TITLE", @"subtitleKey": @"HIDE_TRENDS_OPTION_DETAIL_TITLE", @"default": @NO, @"type": @"toggle" },
+        @{ @"key": @"hide_trend_videos", @"titleKey": @"HIDE_TREND_VIDEOS_OPTION_TITLE", @"subtitleKey": @"HIDE_TREND_VIDEOS_OPTION_DETAIL_TITLE", @"default": @NO, @"type": @"toggle" }
     ];
 }
 
@@ -2794,8 +2796,6 @@ if ([type isEqualToString:@"compactButton"]) {
         @{ @"key": @"hide_topics", @"titleKey": @"HIDE_TOPICS_OPTION_TITLE", @"subtitleKey": @"HIDE_TOPICS_OPTION_DETAIL_TITLE", @"default": @YES },
         @{ @"key": @"hide_topics_to_follow", @"titleKey": @"HIDE_TOPICS_TO_FOLLOW_OPTION", @"subtitleKey": @"HIDE_TOPICS_TO_FOLLOW_OPTION_DETAIL_TITLE", @"default": @YES },
         @{ @"key": @"hide_who_to_follow", @"titleKey": @"HIDE_WHO_FOLLOW_OPTION", @"subtitleKey": @"HIDE_WHO_FOLLOW_OPTION_DETAIL_TITLE", @"default": @YES },
-        @{ @"key": @"no_his", @"titleKey": @"NO_HISTORY_OPTION_TITLE", @"subtitleKey": @"NO_HISTORY_OPTION_DETAIL_TITLE", @"default": @NO },
-        @{ @"key": @"hide_trend_videos", @"titleKey": @"HIDE_TREND_VIDEOS_OPTION_TITLE", @"subtitleKey": @"HIDE_TREND_VIDEOS_OPTION_DETAIL_TITLE", @"default": @NO },
         @{ @"key": @"hide_spaces", @"titleKey": @"HIDE_SPACE_OPTION_TITLE", @"subtitleKey": @"", @"default": @NO },
         @{ @"key": @"hide_custom_timelines", @"titleKey": @"HIDE_CUSTOM_TIMELINES_OPTION_TITLE", @"subtitleKey": @"HIDE_CUSTOM_TIMELINES_OPTION_DETAIL_TITLE", @"default": @NO },
         @{ @"key": @"no_tab_bar_hiding", @"titleKey": @"STOP_HIDING_TAB_BAR_TITLE", @"subtitleKey": @"STOP_HIDING_TAB_BAR_DETAIL_TITLE", @"default": @YES },

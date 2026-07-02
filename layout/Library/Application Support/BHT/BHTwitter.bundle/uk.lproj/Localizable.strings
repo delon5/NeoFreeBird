@@ -12,7 +12,6 @@
 "RESTART_REQUIRED_ALERT_TITLE" = "Потрібен перезапуск";
 "RESTART_REQUIRED_ALERT_MESSAGE" = "Потрібно перезапустити Twitter, щоб зміни набули чинності.";
 "RESTART_NOW_BUTTON_TITLE" = "Перезапустити";
-"MODERN_LAYOUT_RESTART_MESSAGE" = "Щоб перемикатися між сучасним і класичним макетами, потрібно перезапустити Twitter.";
 
 "CONFIRM_ALERT_MESSAGE" = "Ви точно хотіли це зробити?";
 "YES_BUTTON_TITLE" = "Так";

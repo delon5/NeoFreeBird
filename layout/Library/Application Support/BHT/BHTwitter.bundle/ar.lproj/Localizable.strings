@@ -11,7 +11,6 @@
 "RESTART_REQUIRED_ALERT_TITLE" = "مطلوب إعادة التشغيل";
 "RESTART_REQUIRED_ALERT_MESSAGE" = "يجب إعادة تشغيل تويتر لتفعيل هذا التغيير.";
 "RESTART_NOW_BUTTON_TITLE" = "أعد التشغيل الآن";
-"MODERN_LAYOUT_RESTART_MESSAGE" = "للتبديل بين التخطيط الحديث والكلاسيكي، يجب إعادة تشغيل تويتر.";
 
 "CONFIRM_ALERT_MESSAGE" = "هل أنت متأكد أنك تقصد ذلك؟";
 "YES_BUTTON_TITLE" = "نعم";

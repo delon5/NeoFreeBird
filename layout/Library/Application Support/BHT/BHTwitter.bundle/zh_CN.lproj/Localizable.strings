@@ -10,7 +10,6 @@
 "RESTART_REQUIRED_ALERT_TITLE" = "需要重新启动";
 "RESTART_REQUIRED_ALERT_MESSAGE" = "您需要重新启动 Twitter 以使更改生效。";
 "RESTART_NOW_BUTTON_TITLE" = "立即重启";
-"MODERN_LAYOUT_RESTART_MESSAGE" = "要切换现代和经典布局，您需要重新启动 Twitter。";
 
 "CONFIRM_ALERT_MESSAGE" = "你确定要这样做吗？";
 "YES_BUTTON_TITLE" = "是";

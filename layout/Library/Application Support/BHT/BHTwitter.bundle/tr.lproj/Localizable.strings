@@ -10,7 +10,6 @@
 "RESTART_REQUIRED_ALERT_TITLE" = "Yeniden başlatma gerekli";
 "RESTART_REQUIRED_ALERT_MESSAGE" = "Bu değişikliğin geçerli olması için Twitter'ı yeniden başlatmanız gerekiyor.";
 "RESTART_NOW_BUTTON_TITLE" = "Şimdi yeniden başlat";
-"MODERN_LAYOUT_RESTART_MESSAGE" = "Modern ve klasik düzen arasında geçiş yapmak için Twitter'ı yeniden başlatmanız gerekiyor.";
 
 "CONFIRM_ALERT_MESSAGE" = "Bunu yapmak istediğine emin misin?";
 "YES_BUTTON_TITLE" = "Evet";

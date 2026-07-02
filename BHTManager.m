@@ -6,7 +6,6 @@
 //
 
 #import "BHTManager.h"
-#import "SettingsViewController.h"
 #import "BHTBundle/BHTBundle.h"
 #import "ModernSettingsViewController.h"
 
@@ -346,7 +345,6 @@
 }
 
 + (UIViewController *)BHTSettingsWithAccount:(TFNTwitterAccount *)twAccount {
-    // Always use ModernSettingsViewController now
     return [[ModernSettingsViewController alloc] initWithAccount:twAccount];
 }
 

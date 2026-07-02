@@ -10,7 +10,6 @@
 "RESTART_REQUIRED_ALERT_TITLE" = "Redémarrage requis";
 "RESTART_REQUIRED_ALERT_MESSAGE" = "Vous devez redémarrer Twitter pour que ce changement prenne effet.";
 "RESTART_NOW_BUTTON_TITLE" = "Redémarrer maintenant";
-"MODERN_LAYOUT_RESTART_MESSAGE" = "Pour passer de la mise en page moderne à classique, vous devez redémarrer Twitter.";
 
 "CONFIRM_ALERT_MESSAGE" = "Tu es sûr de vouloir faire ça ?";
 "YES_BUTTON_TITLE" = "Oui";
