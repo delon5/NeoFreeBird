@@ -27,6 +27,7 @@
 #import <Preferences/PSListController.h>
 #import <Preferences/PSSpecifier.h>
 #import "ModernSettingsViewController.h"
+#import "BHDownloadInlineButton.h"
 
 @class T1SettingsViewController;
 
@@ -1247,7 +1248,7 @@ static void BHTApplyCopyButtonStyle(UIButton *copyButton, T1ProfileHeaderView *h
 }
 %new - (void)DownloadHandler {
     NSAttributedString *AttString = [[NSAttributedString alloc] initWithString:[[BHTBundle sharedBundle] localizedStringForKey:@"DOWNLOAD_MENU_TITLE"] attributes:@{
-        NSFontAttributeName: [[%c(TAEStandardFontGroup) sharedFontGroup] headline2BoldFont],
+        NSFontAttributeName: [BHTManager menuTitleFont],
         NSForegroundColorAttributeName: UIColor.labelColor
     }];
     TFNActiveTextItem *title = [[%c(TFNActiveTextItem) alloc] initWithTextModel:[[%c(TFNAttributedTextModel) alloc] initWithAttributedString:AttString] activeRanges:nil];
@@ -1776,19 +1777,6 @@ static NSArray *BHT_inlineActionViewClassesForViewModel(NSArray *classes, id vie
     }
 
     NSMutableArray *newClasses = [classes mutableCopy];
-    Class downloadButtonClass = %c(BHDownloadInlineButton);
-
-    if ([BHTManager isVideoCell:viewModel] &&
-        [BHTManager DownloadingVideos] &&
-        downloadButtonClass &&
-        ![newClasses containsObject:downloadButtonClass]) {
-        if (newClasses.count > 0) {
-            ((void (*)(Class, SEL, Class))objc_msgSend)(downloadButtonClass, @selector(setStyleButtonClass:), newClasses.lastObject);
-        }
-
-        NSUInteger downloadButtonIndex = newClasses.count > 1 ? newClasses.count - 1 : newClasses.count;
-        [newClasses insertObject:downloadButtonClass atIndex:downloadButtonIndex];
-    }
 
     Class analyticsButtonClass = %c(TTAStatusInlineAnalyticsButton);
     if (analyticsButtonClass &&
@@ -1818,6 +1806,46 @@ static NSArray *BHT_inlineActionViewClassesForViewModel(NSArray *classes, id vie
 + (NSArray *)_t1_inlineActionViewClassesForViewModel:(id)arg1 options:(NSUInteger)arg2 displayType:(NSUInteger)arg3 account:(id)arg4 {
     NSArray *origClasses = %orig;
     return BHT_inlineActionViewClassesForViewModel(origClasses, arg1);
+}
+%end
+
+// Add a "Download media" item to the tweet overflow (3-dot) menu
+%hook UIViewController
+- (NSArray *)_t1_actionItemsForStatus:(__unsafe_unretained id)status account:(__unsafe_unretained id)account shareableEntity:(__unsafe_unretained id)shareableEntity entityURL:(__unsafe_unretained id)entityURL source:(__unsafe_unretained id)source options:(NSUInteger)options scribeComponent:(__unsafe_unretained id)scribeComponent doneBlock:(__unsafe_unretained id)doneBlock {
+    NSArray *origItems = %orig;
+
+    if (![BHTManager DownloadingVideos] || ![status respondsToSelector:@selector(entities)]) {
+        return origItems;
+    }
+
+    NSArray *mediaEntities = [[status entities] media];
+    BOOL hasVideo = NO;
+    for (TFSTwitterEntityMedia *media in mediaEntities) {
+        if ([media isKindOfClass:%c(TFSTwitterEntityMedia)] && (media.mediaType == 2 || media.mediaType == 3)) {
+            hasVideo = YES;
+            break;
+        }
+    }
+    if (!hasVideo) {
+        return origItems;
+    }
+
+    static char downloaderKey;
+    BHDownloadInlineButton *downloader = objc_getAssociatedObject(self, &downloaderKey);
+    if (!downloader) {
+        downloader = [%c(BHDownloadInlineButton) new];
+        objc_setAssociatedObject(self, &downloaderKey, downloader, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+
+    TFNActionItem *downloadItem = [%c(TFNActionItem) actionItemWithTitle:[[BHTBundle sharedBundle] localizedStringForKey:@"DOWNLOAD_VIDEOS_OPTION_TITLE"]
+                                                              imageName:@"arrow_down_circle_stroke" action:^{
+        [downloader presentDownloadOptionsForMediaEntities:mediaEntities];
+    }];
+
+    NSMutableArray *newItems = origItems ? [origItems mutableCopy] : [NSMutableArray array];
+    NSUInteger insertIndex = newItems.count > 0 ? newItems.count - 1 : 0;
+    [newItems insertObject:downloadItem atIndex:insertIndex];
+    return newItems;
 }
 %end
 
@@ -2802,7 +2830,7 @@ static void BHT_hideExploreTabBar(UIView *view) {
 %new - (void)customFontsHandler {
     if ([[NSFileManager defaultManager] fileExistsAtPath:@"/var/mobile/Library/Fonts/AddedFontCache.plist"]) {
         NSAttributedString *AttString = [[NSAttributedString alloc] initWithString:[[BHTBundle sharedBundle] localizedStringForKey:@"CUSTOM_FONTS_MENU_TITLE"] attributes:@{
-            NSFontAttributeName: [[%c(TAEStandardFontGroup) sharedFontGroup] headline2BoldFont],
+            NSFontAttributeName: [BHTManager menuTitleFont],
             NSForegroundColorAttributeName: UIColor.labelColor
         }];
         TFNActiveTextItem *title = [[%c(TFNActiveTextItem) alloc] initWithTextModel:[[%c(TFNAttributedTextModel) alloc] initWithAttributedString:AttString] activeRanges:nil];

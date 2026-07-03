@@ -233,7 +233,7 @@
 "MEDIA_UPLOAD_4K_ENABLED_OPTION_DETAIL_TITLE" = "Upload photos and videos in 4K.";
 
 "DOWNLOAD_VIDEOS_OPTION_TITLE" = "Download media";
-"DOWNLOAD_VIDEOS_OPTION_DETAIL_TITLE" = "Save videos or GIFs right from Tweets.";
+"DOWNLOAD_VIDEOS_OPTION_DETAIL_TITLE" = "Save videos or GIFs right from the Tweet overflow menu.";
 
 "DIRECT_SAVE_OPTION_TITLE" = "Save to Photos";
 "DIRECT_SAVE_OPTION_DETAIL_TITLE" = "Videos you save will go straight to your Photos app.";

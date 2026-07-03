@@ -59,6 +59,16 @@
     NSNumber *number = [NSNumber numberWithFloat:per];
     return [numberFormatter stringFromNumber:number];
 }
++ (id)sharedFontGroup {
+    id group = [objc_getClass("TFNUIDefaultFontGroup") sharedFontGroup];
+    if (!group) group = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    return group;
+}
++ (UIFont *)menuTitleFont {
+    UIFont *font = [[self sharedFontGroup] headline2BoldFont];
+    if (!font) font = [UIFont boldSystemFontOfSize:17.0];
+    return font;
+}
 + (NSString *)getVideoQuality:(NSString *)url {
     NSMutableArray *q = [NSMutableArray new];
     NSArray *splits = [url componentsSeparatedByString:@"/"];
@@ -109,7 +119,7 @@
 }
 + (TFNMenuSheetViewController *)newFFmpegDownloadSheet:(MediaInformation *)mediaInformation downloadingURL:(NSURL *)downloadingURL progressView:(JGProgressHUD *)hud {
     NSAttributedString *AttString = [[NSAttributedString alloc] initWithString:[[BHTBundle sharedBundle] localizedStringForKey:@"DOWNLOAD_MENU_TITLE"] attributes:@{
-        NSFontAttributeName: [[objc_getClass("TAEStandardFontGroup") sharedFontGroup] headline2BoldFont],
+        NSFontAttributeName: [BHTManager menuTitleFont],
         NSForegroundColorAttributeName: UIColor.labelColor
     }];
     TFNActiveTextItem *title = [[objc_getClass("TFNActiveTextItem") alloc] initWithTextModel:[[objc_getClass("TFNAttributedTextModel") alloc] initWithAttributedString:AttString] activeRanges:nil];

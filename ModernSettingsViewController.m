@@ -6,6 +6,7 @@
 //
 
 #import "ModernSettingsViewController.h"
+#import "BHTManager.h"
 #import "BHTBundle/BHTBundle.h"
 #import "BHDimPalette.h"
 #import "Colours/Colours.h"
@@ -130,7 +131,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
 
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
     self.titleLabel.textColor = [UIColor labelColor];
     [self.contentView addSubview:self.titleLabel];
@@ -214,7 +215,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     [self updateIconColors];
     [self updateSubtitleColor];
     if (previousTraitCollection.preferredContentSizeCategory != self.traitCollection.preferredContentSizeCategory) {
-        id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+        id fontGroup = [BHTManager sharedFontGroup];
         self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
         self.subtitleLabel.font = [fontGroup performSelector:@selector(subtext2Font)];
     }
@@ -236,7 +237,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
 - (void)setupViews {
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
     self.titleLabel.textColor = [UIColor labelColor];
     [self.contentView addSubview:self.titleLabel];
@@ -284,7 +285,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     self.backgroundColor = [BHDimPalette currentBackgroundColor];
     [self updateChevronColor];
     if (previousTraitCollection.preferredContentSizeCategory != self.traitCollection.preferredContentSizeCategory) {
-        id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+        id fontGroup = [BHTManager sharedFontGroup];
         self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
     }
 }
@@ -305,7 +306,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
 - (void)setupViews {
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
     self.titleLabel.textColor = [UIColor labelColor];
     [self.contentView addSubview:self.titleLabel];
@@ -377,7 +378,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     [self updateChevronColor];
     [self updateSubtitleColor];
     if (previousTraitCollection.preferredContentSizeCategory != self.traitCollection.preferredContentSizeCategory) {
-        id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+        id fontGroup = [BHTManager sharedFontGroup];
         self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
         self.subtitleLabel.font = [fontGroup performSelector:@selector(subtext2Font)];
     }
@@ -428,7 +429,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
 }
 
 - (void)applyTheme {
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
     self.subtitleLabel.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
@@ -540,7 +541,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     detailLabel.numberOfLines = 0;
     detailLabel.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT"];
 
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     if (fontGroup) {
         if ([fontGroup respondsToSelector:@selector(bodyBoldFont)]) {
             titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
@@ -599,7 +600,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
         subtitleLabel.numberOfLines = 0;
         subtitleLabel.textAlignment = NSTextAlignmentLeft;
 
-        id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+        id fontGroup = [BHTManager sharedFontGroup];
         subtitleLabel.font = [fontGroup performSelector:@selector(subtext2Font)];
 
         Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
@@ -650,7 +651,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     titleLabel.text = title;
 
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     titleLabel.font = [fontGroup performSelector:@selector(headline1BoldFont)];
 
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
@@ -972,7 +973,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     UIImageView *avatarImageView = [cell.contentView viewWithTag:100];
     UILabel *nameLabel = [cell.contentView viewWithTag:101];
     UILabel *usernameLabel = [cell.contentView viewWithTag:102];
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
     id currentPalette = [settings currentColorPalette];
@@ -1215,7 +1216,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_TWITTER_BLUE_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
@@ -1368,7 +1369,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_MEDIA_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
@@ -1491,7 +1492,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_PROFILES_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
@@ -1621,7 +1622,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_SEARCH_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
@@ -1746,7 +1747,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_TWEETS_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
@@ -1887,7 +1888,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_BRANDING_SUBTITLE"];
     label.numberOfLines = 0;
 
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
 
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
@@ -2078,7 +2079,7 @@ static UIFont *TwitterChirpFont(TwitterFontStyle style) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
@@ -2312,7 +2313,7 @@ if ([type isEqualToString:@"compactButton"]) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_WEB_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
@@ -2617,7 +2618,7 @@ if ([type isEqualToString:@"compactButton"]) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_DEBUG_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];
@@ -2898,7 +2899,7 @@ if ([type isEqualToString:@"compactButton"]) {
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.text = [[BHTBundle sharedBundle] localizedStringForKey:@"MODERN_SETTINGS_LAYOUT_SUBTITLE"];
     label.numberOfLines = 0;
-    id fontGroup = [objc_getClass("TAEStandardFontGroup") sharedFontGroup];
+    id fontGroup = [BHTManager sharedFontGroup];
     label.font = [fontGroup performSelector:@selector(subtext2Font)];
     Class TAEColorSettingsCls = objc_getClass("TAEColorSettings");
     id settings = [TAEColorSettingsCls sharedSettings];

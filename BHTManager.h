@@ -12,6 +12,8 @@
 + (NSString *)getDownloadingPersent:(float)per;
 + (void)cleanCache;
 + (NSString *)getVideoQuality:(NSString *)url;
++ (id)sharedFontGroup;
++ (UIFont *)menuTitleFont;
 + (BOOL)isVideoCell:(id <T1StatusViewModel>)model;
 + (bool)isDMVideoCell:(T1InlineMediaView *)view;
 + (BOOL)doesContainDigitsOnly:(NSString *)string;
