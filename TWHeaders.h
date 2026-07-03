@@ -432,6 +432,7 @@ static NSString *_lastCopiedURL;
 - (void)setRootURL:(NSURL *)url;
 - (void)setCurrentURL:(NSURL *)url;
 @property(nonatomic, readonly) NSURL *currentURL;
+- (WKWebView *)webView;
 @end
 
 @interface T1WebViewController : T1BaseWebViewController
