@@ -2506,6 +2506,9 @@ static void BHTHideHomeAddTabButton(id container) {
 - (_Bool)isSensitiveTweetWarningsConsumeEnabled {
     return [BHTManager disableSensitiveTweetWarnings] ? false : %orig;
 }
+- (BOOL)isAgeAssuranceAgeVerificationFlowEnabled {
+    return [BHTManager bypassAgeVerification] ? NO : %orig;
+}
 - (_Bool)isVideoDynamicAdEnabled {
     return [BHTManager HidePromoted] ? false : %orig;
 }
